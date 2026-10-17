@@ -92,4 +92,98 @@ http://127.0.0.1:8000
 | 9 | `PUT /api/cookies/1` | `200` | Update Item |
 | 10 | `DELETE /api/cookies/1` | `204` | Delete Item |
 
-# API TESTING
+### 1. User Registration
+
+- *Method:* POST
+- *Endpoint:* /api/register
+- *Expected Output:* 201 Created
+- *Description:* Register a new user account.
+
+![User registration request and response](Images/ACT%20IMAGE/REGISTER.png)
+
+### 2. User Login
+
+- *Method:* POST
+- *Endpoint:* /api/login
+- *Expected Output:* 200 OK
+- *Description:* Authenticate user and generate an access token.
+
+![User login request and response](Images/ACT%20IMAGE/LOGIN.png)
+
+### 3. Unauthorized Request
+
+- *Method:* GET
+- *Endpoint:* /api/cookies
+- *Expected Output:* 401 Unauthorized
+- *Description:* Attempt to access endpoint without a bearer token.
+
+![Request without an access token](Images/ACT%20IMAGE/NO%20TOKEN.png)
+
+### 4. Retrieve All Cookies
+
+- *Method:* GET
+- *Endpoint:* /api/cookies
+- *Expected Output:* 200 OK
+- *Description:* Retrieve the list of all cookies using a valid token.
+
+![Retrieve all cookies](Images/ACT%20IMAGE/WITH%20TOKEN.png)
+
+### 5. Create a Cookie
+
+- *Method:* POST
+- *Endpoint:* /api/cookies
+- *Expected Output:* 201 Created
+- *Description:* Add a new cookie record with valid input data.
+
+![Create a cookie](Images/ACT%20IMAGE/VALID%20DATA.png)
+
+### 6. Validation Error
+
+- *Method:* POST
+- *Endpoint:* /api/cookies
+- *Expected Output:* 422 Unprocessable Content
+- *Description:* Test validation rules with missing required fields.
+
+![Validation error for missing required fields](Images/ACT%20IMAGE/MISSING%20FIELD.png)
+
+### 7. Retrieve One Cookie
+
+- *Method:* GET
+- *Endpoint:* /api/cookies/{cookie}
+- *Expected Output:* 200 OK
+- *Description:* Fetch a single existing cookie record by its ID.
+
+![Retrieve a single cookie](Images/ACT%20IMAGE/EXISTING%20RECORD.png)
+
+### 8. Nonexistent Cookie
+
+- *Method:* GET
+- *Endpoint:* /api/cookies/99999
+- *Expected Output:* 404 Not Found
+- *Description:* Request a cookie record that does not exist in the database.
+
+![Request for a nonexistent cookie](Images/ACT%20IMAGE/NOT%20EXISTING.png)
+
+### 9. Update a Cookie
+
+- *Method:* PUT
+- *Endpoint:* /api/cookies/{cookie}
+- *Expected Output:* 200 OK
+- *Description:* Modify an existing cookie record's details.
+
+![Update a cookie](Images/ACT%20IMAGE/UPDATE.png)
+
+### 10. Delete a Cookie
+
+- *Method:* DELETE
+- *Endpoint:* /api/cookies/{cookie}
+- *Expected Output:* 204 No Content
+- *Description:* Remove an existing cookie record from the database.
+
+![Delete a cookie](Images/ACT%20IMAGE/DELETE.png)
+
+# Why does DELETE return 204 and not 200?
+
+<p align="justify">
+DELETE returns 204 because 204 means “No Content.” The delete worked, but there is nothing to send back. After a cookie is deleted, it is gone, so there is no data to show. A 200 usually comes with a message or data, and that would be pointless here. The empty reply still tells the client that the delete worked.
+</p>
