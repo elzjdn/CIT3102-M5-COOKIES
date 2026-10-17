@@ -1,58 +1,95 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CIT3102-M5-COOKIE
+Midterm Activity
+# CIT 3102: Systems Integration and Architecture (Midterms - Activity 2)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+# Project Information
+★ Cookie Shop API<br>
+Name: Elaiza Jade Bernardino<br>
+Section: IT3E<br>
+Chosen Resource: Cookies<br>
+
+<p align="justify">
+This project is a REST API built with Laravel that allows users to register, log in, and manage cookie shop inventory records. It supports creating, retrieving, updating, deleting, and filtering cookies by flavor and category. Laravel Sanctum is used to protect routes that require authentication.
 </p>
 
-## About Laravel
+# Setup Procedure
+★ Requirements<br>
+- Laravel installer<br>  				
+- PHP<br>  
+- SQLite<br>  
+- Bruno for testing<br>  
+- Composer<br>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### ★ Step-by-Step Process<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+1. Install Laravel For Windows:
 
 ```bash
-composer require laravel/boost --dev
+# Run as administrator...
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.5'))
+```
+2. Install Laravel Composer:
 
-php artisan boost:install
+```bash
+composer global require laravel/installer
+```
+3. Create an application:
+
+```bash
+laravel new example-app
+```
+4. Navigate to the project directory:
+
+```bash
+cd cookie-shop
+```
+5. Navigate to the project directory:
+
+```bash
+cd cookie-shop
+```
+6. Install API support:
+
+```bash
+php artisan install:api
+```
+7. Create the Book model and migration file:
+
+```bash
+php artisan make:model cookies -m
+```
+8. Run the database migrations:
+
+```bash
+php artisan migrate
+```
+9. Create the API controller for Cookies:
+
+```bash
+php artisan make:controller CookieController --api
+```
+10. Start the Laravel development server:
+```bash
+php artisan serve
+```
+11. Send API requests via Bruno at:
+```bash
+http://127.0.0.1:8000
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+# API ROUTES
 
-## Contributing
+| # | Request | Expected Status | Description |
+| :--- | :--- | :---: | :--- |
+| 1 | `POST /api/register` | `201` | Register user |
+| 2 | `POST /api/login` | `200` | Log in user |
+| 3 | `GET /api/cookies` | `401` | Unauthorized check |
+| 4 | `GET /api/cookies` | `200` | Fetch Item (Authenticated) |
+| 5 | `POST /api/cookies` | `201` | Create cookie Item |
+| 6 | `POST /api/cookies` | `422` | Validation error |
+| 7 | `GET /api/cookies/1` | `200` | Fetch single cookie Item |
+| 8 | `GET /api/cookies/99999` | `404` | Check Non-existent Item |
+| 9 | `PUT /api/cookies/1` | `200` | Update Item |
+| 10 | `DELETE /api/cookies/1` | `204` | Delete Item |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# API TESTING
